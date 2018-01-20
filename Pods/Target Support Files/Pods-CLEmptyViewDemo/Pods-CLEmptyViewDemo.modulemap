@@ -1,0 +1,6 @@
+framework module Pods_CLEmptyViewDemo {
+  umbrella header "Pods-CLEmptyViewDemo-umbrella.h"
+
+  export *
+  module * { export * }
+}

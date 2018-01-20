@@ -7,21 +7,29 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		79121EA979D355320DEC7E4C /* Pods_CLEmptyViewDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C3B20B0E93F20DF03EC8B187 /* Pods_CLEmptyViewDemo.framework */; };
+		A33274B22011CE7000B0DFF4 /* UITableView+CLEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33274B12011CE6800B0DFF4 /* UITableView+CLEmpty.swift */; };
+		A33274B42011ECC800B0DFF4 /* UICollectionView+CLEmpty.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33274B32011ECC800B0DFF4 /* UICollectionView+CLEmpty.swift */; };
+		A33274BB2011F70E00B0DFF4 /* detailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A33274BA2011F70E00B0DFF4 /* detailViewController.swift */; };
 		A38F1F58200365A8006B9248 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38F1F57200365A8006B9248 /* AppDelegate.swift */; };
 		A38F1F5A200365A8006B9248 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38F1F59200365A8006B9248 /* ViewController.swift */; };
-		A38F1F5D200365A8006B9248 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38F1F5B200365A8006B9248 /* Main.storyboard */; };
 		A38F1F5F200365A8006B9248 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38F1F5E200365A8006B9248 /* Assets.xcassets */; };
-		A38F1F62200365A8006B9248 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A38F1F60200365A8006B9248 /* LaunchScreen.storyboard */; };
+		A38F1F6A200365CD006B9248 /* CLEmptyBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38F1F69200365CD006B9248 /* CLEmptyBaseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A33274B12011CE6800B0DFF4 /* UITableView+CLEmpty.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+CLEmpty.swift"; sourceTree = "<group>"; };
+		A33274B32011ECC800B0DFF4 /* UICollectionView+CLEmpty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CLEmpty.swift"; sourceTree = "<group>"; };
+		A33274BA2011F70E00B0DFF4 /* detailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = detailViewController.swift; sourceTree = "<group>"; };
 		A38F1F54200365A8006B9248 /* CLEmptyViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CLEmptyViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A38F1F57200365A8006B9248 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A38F1F59200365A8006B9248 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		A38F1F5C200365A8006B9248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A38F1F5E200365A8006B9248 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		A38F1F61200365A8006B9248 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A38F1F63200365A8006B9248 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A38F1F69200365CD006B9248 /* CLEmptyBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLEmptyBaseView.swift; sourceTree = "<group>"; };
+		C3B20B0E93F20DF03EC8B187 /* Pods_CLEmptyViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CLEmptyViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DE0F3933C06B809C3D4F5EA1 /* Pods-CLEmptyViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLEmptyViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLEmptyViewDemo/Pods-CLEmptyViewDemo.release.xcconfig"; sourceTree = "<group>"; };
+		F419F41FD2862D5F248008C8 /* Pods-CLEmptyViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLEmptyViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLEmptyViewDemo/Pods-CLEmptyViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +37,48 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				79121EA979D355320DEC7E4C /* Pods_CLEmptyViewDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		275A45B889BC6C00E7F59ED8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				F419F41FD2862D5F248008C8 /* Pods-CLEmptyViewDemo.debug.xcconfig */,
+				DE0F3933C06B809C3D4F5EA1 /* Pods-CLEmptyViewDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		A33274B52011F63400B0DFF4 /* CLEmptyView */ = {
+			isa = PBXGroup;
+			children = (
+				A38F1F69200365CD006B9248 /* CLEmptyBaseView.swift */,
+			);
+			path = CLEmptyView;
+			sourceTree = "<group>";
+		};
+		A33274BE20132DC600B0DFF4 /* sample */ = {
+			isa = PBXGroup;
+			children = (
+				A33274B12011CE6800B0DFF4 /* UITableView+CLEmpty.swift */,
+				A33274B32011ECC800B0DFF4 /* UICollectionView+CLEmpty.swift */,
+				A38F1F59200365A8006B9248 /* ViewController.swift */,
+				A33274BA2011F70E00B0DFF4 /* detailViewController.swift */,
+			);
+			path = sample;
+			sourceTree = "<group>";
+		};
 		A38F1F4B200365A8006B9248 = {
 			isa = PBXGroup;
 			children = (
 				A38F1F56200365A8006B9248 /* CLEmptyViewDemo */,
 				A38F1F55200365A8006B9248 /* Products */,
+				275A45B889BC6C00E7F59ED8 /* Pods */,
+				FBD20DA21BE779837CE36429 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +93,21 @@
 		A38F1F56200365A8006B9248 /* CLEmptyViewDemo */ = {
 			isa = PBXGroup;
 			children = (
+				A33274B52011F63400B0DFF4 /* CLEmptyView */,
+				A33274BE20132DC600B0DFF4 /* sample */,
 				A38F1F57200365A8006B9248 /* AppDelegate.swift */,
-				A38F1F59200365A8006B9248 /* ViewController.swift */,
-				A38F1F5B200365A8006B9248 /* Main.storyboard */,
 				A38F1F5E200365A8006B9248 /* Assets.xcassets */,
-				A38F1F60200365A8006B9248 /* LaunchScreen.storyboard */,
 				A38F1F63200365A8006B9248 /* Info.plist */,
 			);
 			path = CLEmptyViewDemo;
+			sourceTree = "<group>";
+		};
+		FBD20DA21BE779837CE36429 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				C3B20B0E93F20DF03EC8B187 /* Pods_CLEmptyViewDemo.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +117,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A38F1F66200365A8006B9248 /* Build configuration list for PBXNativeTarget "CLEmptyViewDemo" */;
 			buildPhases = (
+				68AC0BFB64AB9C2DB426FBDA /* [CP] Check Pods Manifest.lock */,
 				A38F1F50200365A8006B9248 /* Sources */,
 				A38F1F51200365A8006B9248 /* Frameworks */,
 				A38F1F52200365A8006B9248 /* Resources */,
+				FC4E8C46EF3999D7C52890E9 /* [CP] Embed Pods Frameworks */,
+				95AFE4060D8C6CA32677D646 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -123,44 +172,81 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A38F1F62200365A8006B9248 /* LaunchScreen.storyboard in Resources */,
 				A38F1F5F200365A8006B9248 /* Assets.xcassets in Resources */,
-				A38F1F5D200365A8006B9248 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		68AC0BFB64AB9C2DB426FBDA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-CLEmptyViewDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		95AFE4060D8C6CA32677D646 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CLEmptyViewDemo/Pods-CLEmptyViewDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FC4E8C46EF3999D7C52890E9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-CLEmptyViewDemo/Pods-CLEmptyViewDemo-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/MJRefresh/MJRefresh.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MJRefresh.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-CLEmptyViewDemo/Pods-CLEmptyViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A38F1F50200365A8006B9248 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A38F1F6A200365CD006B9248 /* CLEmptyBaseView.swift in Sources */,
+				A33274B22011CE7000B0DFF4 /* UITableView+CLEmpty.swift in Sources */,
 				A38F1F5A200365A8006B9248 /* ViewController.swift in Sources */,
 				A38F1F58200365A8006B9248 /* AppDelegate.swift in Sources */,
+				A33274B42011ECC800B0DFF4 /* UICollectionView+CLEmpty.swift in Sources */,
+				A33274BB2011F70E00B0DFF4 /* detailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		A38F1F5B200365A8006B9248 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A38F1F5C200365A8006B9248 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		A38F1F60200365A8006B9248 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A38F1F61200365A8006B9248 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		A38F1F64200365A8006B9248 /* Debug */ = {
@@ -272,10 +358,14 @@
 		};
 		A38F1F67200365A8006B9248 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F419F41FD2862D5F248008C8 /* Pods-CLEmptyViewDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 968Q63C2Z7;
 				INFOPLIST_FILE = CLEmptyViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fff.CLEmptyViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -286,10 +376,14 @@
 		};
 		A38F1F68200365A8006B9248 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = DE0F3933C06B809C3D4F5EA1 /* Pods-CLEmptyViewDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "LaunchImage-1";
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 968Q63C2Z7;
 				INFOPLIST_FILE = CLEmptyViewDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = fff.CLEmptyViewDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
