@@ -4,8 +4,6 @@
 
 ![Markdown](http://i1.bvimg.com/628975/35e865ed2216aa8b.gif)
 
-### demo地址,有需要的请自行查看 [github](https://github.com/cleven1/CLEmptyView)
-
 ### 集成方式可以直接pod导入:
 `pod 'CLEmptyView'`
 
