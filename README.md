@@ -2,7 +2,7 @@
 
 #### 本库采用链式语法编写,不依赖任何库,使用相当简单方便,可满足大众空界面需求,如果在使用的过程中,遇到问题,还请告知,感谢,如果对您有帮助,请star鼓励一下
 
-![Markdown](http://i1.bvimg.com/628975/22e4d878e650f2cd.gif)
+![Markdown](http://i1.bvimg.com/628975/35e865ed2216aa8b.gif)
 
 ### demo地址,有需要的请自行查看 [github](https://github.com/cleven1/CLEmptyView)
 
