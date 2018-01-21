@@ -15,6 +15,10 @@
 		A38F1F5A200365A8006B9248 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38F1F59200365A8006B9248 /* ViewController.swift */; };
 		A38F1F5F200365A8006B9248 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A38F1F5E200365A8006B9248 /* Assets.xcassets */; };
 		A38F1F6A200365CD006B9248 /* CLEmptyBaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A38F1F69200365CD006B9248 /* CLEmptyBaseView.swift */; };
+		DF3E66222014508F00E16C32 /* UITableView+CLBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E66212014508F00E16C32 /* UITableView+CLBase.swift */; };
+		DF3E66242014519C00E16C32 /* UITableView+MJRefResh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E66232014519C00E16C32 /* UITableView+MJRefResh.swift */; };
+		DF3E6628201453A600E16C32 /* UICollectionView+CLBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E6627201453A600E16C32 /* UICollectionView+CLBase.swift */; };
+		DF3E662A2014540300E16C32 /* UICollectionView+MJRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF3E66292014540300E16C32 /* UICollectionView+MJRefresh.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +33,10 @@
 		A38F1F69200365CD006B9248 /* CLEmptyBaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLEmptyBaseView.swift; sourceTree = "<group>"; };
 		C3B20B0E93F20DF03EC8B187 /* Pods_CLEmptyViewDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_CLEmptyViewDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DE0F3933C06B809C3D4F5EA1 /* Pods-CLEmptyViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLEmptyViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-CLEmptyViewDemo/Pods-CLEmptyViewDemo.release.xcconfig"; sourceTree = "<group>"; };
+		DF3E66212014508F00E16C32 /* UITableView+CLBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+CLBase.swift"; sourceTree = "<group>"; };
+		DF3E66232014519C00E16C32 /* UITableView+MJRefResh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+MJRefResh.swift"; sourceTree = "<group>"; };
+		DF3E6627201453A600E16C32 /* UICollectionView+CLBase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+CLBase.swift"; sourceTree = "<group>"; };
+		DF3E66292014540300E16C32 /* UICollectionView+MJRefresh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionView+MJRefresh.swift"; sourceTree = "<group>"; };
 		F419F41FD2862D5F248008C8 /* Pods-CLEmptyViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CLEmptyViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-CLEmptyViewDemo/Pods-CLEmptyViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -57,6 +65,8 @@
 			isa = PBXGroup;
 			children = (
 				A38F1F69200365CD006B9248 /* CLEmptyBaseView.swift */,
+				DF3E66252014534E00E16C32 /* UITableView+CLBase */,
+				DF3E66262014538800E16C32 /* UICollectionView+CLBase */,
 			);
 			path = CLEmptyView;
 			sourceTree = "<group>";
@@ -100,6 +110,24 @@
 				A38F1F63200365A8006B9248 /* Info.plist */,
 			);
 			path = CLEmptyViewDemo;
+			sourceTree = "<group>";
+		};
+		DF3E66252014534E00E16C32 /* UITableView+CLBase */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E66212014508F00E16C32 /* UITableView+CLBase.swift */,
+				DF3E66232014519C00E16C32 /* UITableView+MJRefResh.swift */,
+			);
+			path = "UITableView+CLBase";
+			sourceTree = "<group>";
+		};
+		DF3E66262014538800E16C32 /* UICollectionView+CLBase */ = {
+			isa = PBXGroup;
+			children = (
+				DF3E6627201453A600E16C32 /* UICollectionView+CLBase.swift */,
+				DF3E66292014540300E16C32 /* UICollectionView+MJRefresh.swift */,
+			);
+			path = "UICollectionView+CLBase";
 			sourceTree = "<group>";
 		};
 		FBD20DA21BE779837CE36429 /* Frameworks */ = {
@@ -237,9 +265,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DF3E66242014519C00E16C32 /* UITableView+MJRefResh.swift in Sources */,
 				A38F1F6A200365CD006B9248 /* CLEmptyBaseView.swift in Sources */,
+				DF3E662A2014540300E16C32 /* UICollectionView+MJRefresh.swift in Sources */,
 				A33274B22011CE7000B0DFF4 /* UITableView+CLEmpty.swift in Sources */,
+				DF3E6628201453A600E16C32 /* UICollectionView+CLBase.swift in Sources */,
 				A38F1F5A200365A8006B9248 /* ViewController.swift in Sources */,
+				DF3E66222014508F00E16C32 /* UITableView+CLBase.swift in Sources */,
 				A38F1F58200365A8006B9248 /* AppDelegate.swift in Sources */,
 				A33274B42011ECC800B0DFF4 /* UICollectionView+CLEmpty.swift in Sources */,
 				A33274BB2011F70E00B0DFF4 /* detailViewController.swift in Sources */,
