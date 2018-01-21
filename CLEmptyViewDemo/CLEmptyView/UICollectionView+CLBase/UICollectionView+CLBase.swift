@@ -11,7 +11,7 @@ import UIKit
 //MARK:代理事件回调
 extension UICollectionView:CLEmptyBaseViewDelegate{
     /// 点击占位图回调
-    func clickEmptyView() {
+    public func clickEmptyView() {
         if config.clEmptyView.isLoading {return}
         config.clEmptyView.isLoading = true
         if let callback = config.tapEmptyViewCallback {
@@ -20,7 +20,7 @@ extension UICollectionView:CLEmptyBaseViewDelegate{
     }
     
     /// 点击第一个按钮回调
-    func clickFirstButton() {
+    public func clickFirstButton() {
         if config.clEmptyView.isLoading {return}
         if let callback = config.tapFirstButtonCallback {
             callback()
@@ -28,15 +28,15 @@ extension UICollectionView:CLEmptyBaseViewDelegate{
     }
     
     /// 点击第二个按钮回调
-    func clickSecondButton() {
+    public func clickSecondButton() {
         if config.clEmptyView.isLoading {return}
         if let callback = config.tapSecondButtonCallback {
             callback()
         }
     }
 }
-extension UICollectionView {
-    var config : CLConfigEmptyView {
+public extension UICollectionView {
+   public var config : CLConfigEmptyView {
         set {
             objc_setAssociatedObject(self, runtimeKey.tableKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }

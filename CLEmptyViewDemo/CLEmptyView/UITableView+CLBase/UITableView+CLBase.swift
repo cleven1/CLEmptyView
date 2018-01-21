@@ -12,7 +12,7 @@ import UIKit
 extension UITableView:CLEmptyBaseViewDelegate{
     
     /// 点击占位图回调
-    func clickEmptyView() {
+   public func clickEmptyView() {
         if config.clEmptyView.isLoading {return}
         config.clEmptyView.isLoading = true
         if let callback = config.tapEmptyViewCallback {
@@ -21,7 +21,7 @@ extension UITableView:CLEmptyBaseViewDelegate{
     }
     
     ///  点击第一个按钮回调
-    func clickFirstButton() {
+   public func clickFirstButton() {
         if config.clEmptyView.isLoading {return}
         if let callback = config.tapFirstButtonCallback {
             callback()
@@ -29,7 +29,7 @@ extension UITableView:CLEmptyBaseViewDelegate{
     }
     
     /// 点击第二个按钮回调
-    func clickSecondButton() {
+   public func clickSecondButton() {
         if config.clEmptyView.isLoading {return}
         if let callback = config.tapSecondButtonCallback {
             callback()
@@ -37,8 +37,9 @@ extension UITableView:CLEmptyBaseViewDelegate{
     }
 }
 
-extension UITableView {
-    var config : CLConfigEmptyView {
+public extension UITableView {
+    
+    public var config : CLConfigEmptyView {
         set {
             objc_setAssociatedObject(self, runtimeKey.tableKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
@@ -54,12 +55,12 @@ extension UITableView {
     }
 }
 /// 记录配置信息
-struct CLConfigEmptyView {
+public struct CLConfigEmptyView {
     
     var tapEmptyViewCallback : (()->Void)?
     var tapFirstButtonCallback : (()->Void)?
     var tapSecondButtonCallback : (()->Void)?
-    var clEmptyView:CLEmptyBaseView = CLEmptyBaseView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+   public var clEmptyView:CLEmptyBaseView = CLEmptyBaseView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
     
 }
 

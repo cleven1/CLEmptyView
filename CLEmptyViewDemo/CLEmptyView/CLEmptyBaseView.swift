@@ -8,13 +8,13 @@
 
 import UIKit
 
-protocol CLEmptyBaseViewDelegate:NSObjectProtocol {
+public protocol CLEmptyBaseViewDelegate:NSObjectProtocol {
     func clickEmptyView()
     func clickFirstButton()
     func clickSecondButton()
 }
 
-class CLEmptyBaseView: UIView {
+public class CLEmptyBaseView: UIView {
     fileprivate let rotationAnimKey = "rotationAnimKey"
     
     /// 内容物背景视图
@@ -144,7 +144,7 @@ class CLEmptyBaseView: UIView {
     
 }
 //MARK: 配置
-extension CLEmptyBaseView {
+public extension CLEmptyBaseView {
     
     func addEmptyImage(imageNmae:String) -> CLEmptyBaseView {
         emptyImageName = imageNmae

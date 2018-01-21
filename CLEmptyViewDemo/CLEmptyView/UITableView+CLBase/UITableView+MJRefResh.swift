@@ -14,7 +14,7 @@ extension UITableView {
     /// 添加头部刷新 必须在数据请求之后,调用successReload or failedReload
     ///
     /// - Parameter callback: head回调
-    func addHeaderCallback (callback : @escaping ()->(Void)) {
+   public func addHeaderCallback (callback : @escaping ()->(Void)) {
         self.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
             callback()
         })
@@ -23,7 +23,7 @@ extension UITableView {
     /// 添加尾部刷新 必须在数据请求之后,调用successReload or failedReload
     ///
     /// - Parameter callback: footer回调
-    func addFooterCallback (callback : @escaping ()->(Void)) {
+   public func addFooterCallback (callback : @escaping ()->(Void)) {
         self.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
             callback()
         })
@@ -33,7 +33,7 @@ extension UITableView {
     /// 添加空页面点击回调 必须在数据请求之后,调用successReload or failedReload
     ///
     /// - Parameter callback: view回调
-    func addEmptyViewCallback (callback : (()->Void)?) {
+   public func addEmptyViewCallback (callback : (()->Void)?) {
         config.tapEmptyViewCallback = callback
     }
     
@@ -41,7 +41,7 @@ extension UITableView {
     /// 添加第一个按钮回调 必须在事件完成之后,调用successReload or failedReload
     ///
     /// - Parameter callback: 按钮回调
-    func addFirstButtonCallback (callback : (()->Void)?) {
+   public func addFirstButtonCallback (callback : (()->Void)?) {
         
         config.tapFirstButtonCallback = callback
     }
@@ -50,7 +50,7 @@ extension UITableView {
     /// 添加第二个按钮回调 必须在事件完成之后,调用successReload or failedReload
     ///
     /// - Parameter callback: 按钮回调
-    func addSecondButtonCallback (callback : (()->Void)?) {
+   public func addSecondButtonCallback (callback : (()->Void)?) {
         
         config.tapSecondButtonCallback = callback
     }
@@ -59,20 +59,20 @@ extension UITableView {
     /// 设置是否显示加载动画
     ///
     /// - Parameter isLoading: isLoading
-    func setIsloading(isLoading:Bool) {
+   public func setIsloading(isLoading:Bool) {
         config.clEmptyView.isLoading = isLoading
     }
     
     
     /// 头部刷新
-    func headRefresh () {
+   public func headRefresh () {
         self.mj_header.beginRefreshing()
     };
     
     /// 请求成功后调用
     ///
     /// - Parameter noMoreData: YES 设置没有更多数据
-    func successReload(noMoreData : Bool = false) {
+   public func successReload(noMoreData : Bool = false) {
         guard let footer = mj_footer else {
             self.endRefresh()
             return
@@ -86,7 +86,7 @@ extension UITableView {
     }
     
     /// 请求失败后调用
-    func failedReload () {
+   public func failedReload () {
         endRefresh()
     }
     
