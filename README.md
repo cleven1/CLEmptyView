@@ -48,7 +48,6 @@ self.tableView.failedReload()
 ```
 self.config.clEmptyView.setIsHiddenLoading = true
 ```
-### `isLoading`设为false 将关闭加载动画界面
 
 ### 如果您的界面需要根据网络状态显示不同的占位图片,只需要在配置信息的地方按照网络状态给此函数赋值即可:
 ```
