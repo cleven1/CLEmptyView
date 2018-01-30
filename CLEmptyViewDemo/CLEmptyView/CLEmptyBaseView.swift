@@ -34,7 +34,7 @@ public class CLEmptyBaseView: UIView {
     
     public var isLoading:Bool = true {
         didSet{
-            setLoading = isLoading
+            setIsHiddenLoading = isLoading
         }
     }
     fileprivate var emptyTips:NSAttributedString?
@@ -56,8 +56,6 @@ public class CLEmptyBaseView: UIView {
     fileprivate var secondBtnBorderWidth:CGFloat = 0
     fileprivate var secondBtnBackGroundColor:UIColor?
     // 记录占位图的约束
-    fileprivate var emptyImageW:NSLayoutConstraint!
-    fileprivate var emptyImageH:NSLayoutConstraint!
     fileprivate var emptyImageX:NSLayoutConstraint!
     fileprivate var emptyImageY:NSLayoutConstraint!
     
@@ -66,7 +64,7 @@ public class CLEmptyBaseView: UIView {
     weak public var delegate:CLEmptyBaseViewDelegate?
     
     /// 是否显示加载中动画
-    public var setLoading:Bool = false {
+    public var setIsHiddenLoading:Bool = false {
         didSet{
             contentView?.isHidden = isLoading
             loadingView?.isHidden = !isLoading
@@ -75,15 +73,10 @@ public class CLEmptyBaseView: UIView {
     }
     
     /// 设置空界面占位图,可根据网络状态,配置不同图片
-    public func setEmptyImage(imageName:String?,tips:String?) {
+    public func setEmptyImage(imageName:String?,tips:NSAttributedString?) {
         
         emptyImage?.setImage(UIImage(named: imageName ?? emptyImageName), for: .normal)
-        if (emptyImage?.imageView?.bounds.width)! < ((contentView?.bounds.width)! * 0.7) {
-            // 更新约束
-            let w = contentView!.bounds.width * 0.7 - (emptyImage?.imageView?.bounds.width)!
-            emptyImageW.constant = -w
-            emptyImageH.constant = -w
-        }
+        titleLabel?.attributedText = tips
     }
     
     
@@ -96,12 +89,12 @@ public class CLEmptyBaseView: UIView {
     ///   - firstBtn: 如果只有一个按钮,居中显示
     ///   - secondBtn: 如果有两个按钮,左右分布
     open func setUpEmpty(imageName: String?,
-                               title: NSAttributedString?,
-                               text: NSAttributedString?,
-                               firstBtn:UIButton?,
-                               firstBtnWidth:CGFloat,
-                               secondBtn:UIButton?,
-                               secondBtnWidth:CGFloat) {
+                         title: NSAttributedString?,
+                         text: NSAttributedString?,
+                         firstBtn:UIButton?,
+                         firstBtnWidth:CGFloat,
+                         secondBtn:UIButton?,
+                         secondBtnWidth:CGFloat) {
         config(imageName: imageName,
                title: title,
                detailTitle: text,
@@ -122,9 +115,9 @@ public class CLEmptyBaseView: UIView {
         
         loadingView = UIView(frame: bounds)
         addSubview(loadingView!)
-
+        
         loadingImage = UIImageView(image: UIImage(named: imageNames.first ?? ""))
-        loadingImage?.contentMode = .scaleAspectFill
+        loadingImage?.contentMode = .center
         if imageNames.count > Int(1) {
             isGroupAnimation = true
             loadingImage?.animationImages = imageNames.flatMap{UIImage(named: $0)}
@@ -138,7 +131,7 @@ public class CLEmptyBaseView: UIView {
         loadingTitleLabel?.attributedText = titleAttr
         loadingTitleLabel?.translatesAutoresizingMaskIntoConstraints = false
         loadingView?.addSubview(loadingTitleLabel!)
-
+        
         configLoadingViewConstraint()
     }
     
@@ -238,7 +231,7 @@ public extension CLEmptyBaseView {
         }
         setUpEmpty(imageName: emptyImageName, title: emptyTips, text: detailTips, firstBtn: firstBtn, firstBtnWidth: firstBtnWidth, secondBtn: secondBtn, secondBtnWidth: secondBtnWidth)
         setUpEmptyLoading(imageNames: loadingImageName, titleAttr: loadingTips, duration: loadingDuration)
-        self.setLoading = isLoading
+        self.setIsHiddenLoading = isLoading
     }
     
     fileprivate func initButton(title:String?,titleColor:UIColor?,cornerRadius:CGFloat,borderWidth:CGFloat,borderColor:UIColor?,bgColor:UIColor?) -> UIButton{
@@ -276,14 +269,12 @@ extension CLEmptyBaseView {
             emptyImage.setImage(UIImage(named:imageName), for: .normal)
             emptyImage.addTarget(self, action: #selector(self.clickEmptyView), for: .touchUpInside)
             emptyImage.sizeToFit()
-            emptyImage.imageView?.contentMode = .scaleAspectFit
+            emptyImage.imageView?.contentMode = .scaleAspectFill
             contentView?.addSubview(emptyImage)
             emptyImage.translatesAutoresizingMaskIntoConstraints = false
             emptyImageX = NSLayoutConstraint(item: emptyImage, attribute: .centerX, relatedBy: .equal, toItem: contentView, attribute: .centerX, multiplier: 1, constant: 0)
-            emptyImageW = NSLayoutConstraint(item: emptyImage, attribute: .width, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: 0.7, constant: 0)
-            emptyImageH = NSLayoutConstraint(item: emptyImage, attribute: .height, relatedBy: .equal, toItem: contentView, attribute: .width, multiplier: 0.7, constant: 0)
             emptyImageY = NSLayoutConstraint(item: emptyImage, attribute: .centerY, relatedBy: .equal, toItem: contentView, attribute: .centerY, multiplier: 1, constant: -50)
-            contentView?.addConstraints([emptyImageX,emptyImageY,emptyImageW,emptyImageH])
+            contentView?.addConstraints([emptyImageX,emptyImageY])
         }
         
         if let title = title {
@@ -291,6 +282,7 @@ extension CLEmptyBaseView {
             guard let titleLabel = titleLabel else {return}
             titleLabel.attributedText = title
             titleLabel.textAlignment = .center
+            titleLabel.textColor = UIColor.gray
             titleLabel.sizeToFit()
             contentView?.addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -370,7 +362,7 @@ extension CLEmptyBaseView {
         loadingImage?.translatesAutoresizingMaskIntoConstraints = false
         /// 约束loadingImage
         let loadingCenterX = NSLayoutConstraint(item: loadingImage!, attribute: .centerX, relatedBy: .equal, toItem: loadingView!, attribute: .centerX, multiplier: 1, constant: 0)
-        let loadingCenterY = NSLayoutConstraint(item: loadingImage!, attribute: .centerY, relatedBy: .equal, toItem: loadingView!, attribute: .centerY, multiplier: 1, constant: 0)
+        let loadingCenterY = NSLayoutConstraint(item: loadingImage!, attribute: .bottom, relatedBy: .equal, toItem: loadingView!, attribute: .centerY, multiplier: 1, constant: -50)
         var loadingW:NSLayoutConstraint = NSLayoutConstraint()
         var loadingH:NSLayoutConstraint = NSLayoutConstraint()
         /// 如果图片宽度大于屏幕宽度一半,设置宽高为屏幕的一半
@@ -415,3 +407,4 @@ extension CLEmptyBaseView {
         }
     }
 }
+

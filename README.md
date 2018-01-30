@@ -43,17 +43,16 @@ self.tableView.successReload()
 ```
 self.tableView.failedReload()
 ```
-### 如果不调用这句话,那么加载动画将一直进行下去
 
 ### 如果需要单独管理加载动画,提供了一个属性
 ```
-self?.tableView.setIsloading(isLoading: false)
+self.config.clEmptyView.setIsHiddenLoading = true
 ```
 ### `isLoading`设为false 将关闭加载动画界面
 
 ### 如果您的界面需要根据网络状态显示不同的占位图片,只需要在配置信息的地方按照网络状态给此函数赋值即可:
 ```
-config.clEmptyView.setEmptyImage(imageName: "empty1", tips: "当前没有网络")
+config.clEmptyView.setEmptyImage(imageName: "home_no_network", tips: tipsAtt)
 ```
 
 ## 更多使用方法,请看demo,或者直接看源码

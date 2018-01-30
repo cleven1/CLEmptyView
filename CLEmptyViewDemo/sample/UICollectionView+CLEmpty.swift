@@ -15,7 +15,7 @@ extension UICollectionView {
     public func normalEmptyView(){
         config.clEmptyView.addEmptyImage(imageNmae: "empty")
             .addEmptyTis(tips: NSAttributedString(string: "这是一个标题"))
-            .addLoadingImage(imageNames: ["load-0"])
+            .addLoadingImage(imageNames: ["loading"])
             .addLoadingTips(tips: NSAttributedString(string: "正在加载中..."))
             .addLoadingDuration(duration: 0.5) //默认1秒
             .endConfig()

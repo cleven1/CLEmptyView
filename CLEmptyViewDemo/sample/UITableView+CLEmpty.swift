@@ -14,7 +14,7 @@ extension UITableView {
    public func normalEmptyView(){
         config.clEmptyView.addEmptyImage(imageNmae: "empty")
             .addEmptyTis(tips: NSAttributedString(string: "这是一个标题"))
-            .addLoadingImage(imageNames: ["timg"])
+            .addLoadingImage(imageNames: ["loading"])
             .addLoadingTips(tips: NSAttributedString(string: "正在加载中..."))
             .addLoadingDuration(duration: 0.5) //默认1秒
             .endConfig()
@@ -63,7 +63,13 @@ extension UITableView {
         isScrollEnabled = false
         //如果需要按照网络状态展示不同占位图,给这个属性赋值即可
         
-//        config.clEmptyView.setEmptyImage(imageName: "empty1", tips: "当前没有网络")
+//        let tips = "当前没有网络"
+//        let tipsAtt = NSMutableAttributedString(string: tips)
+//        tipsAtt.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.gray, range: NSRange(location: 0, length: tips.count))
+//        self.config.clEmptyView.setEmptyImage(imageName: "home_no_network", tips: tipsAtt) // 没有网络时显示的提示语)
+//        
+//        /// 隐藏加载动画
+//        self.config.clEmptyView.setIsHiddenLoading = true
         
     }
     

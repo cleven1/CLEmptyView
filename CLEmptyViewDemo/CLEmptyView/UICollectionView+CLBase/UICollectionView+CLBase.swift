@@ -36,7 +36,7 @@ extension UICollectionView:CLEmptyBaseViewDelegate{
     }
 }
 public extension UICollectionView {
-   public var config : CLConfigEmptyView {
+    public var config : CLConfigEmptyView {
         set {
             objc_setAssociatedObject(self, runtimeKey.tableKey!, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         }
@@ -46,9 +46,12 @@ public extension UICollectionView {
             if let config1 = config1 {
                 return config1
             }
-            let tempList = CLConfigEmptyView()
+            layoutIfNeeded()
+            var tempList = CLConfigEmptyView()
+            tempList.frame = self.frame
             self.config = tempList
             return tempList
         }
     }
 }
+

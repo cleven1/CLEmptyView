@@ -12,7 +12,7 @@ import UIKit
 extension UITableView:CLEmptyBaseViewDelegate{
     
     /// 点击占位图回调
-   public func clickEmptyView() {
+    public func clickEmptyView() {
         if config.clEmptyView.isLoading {return}
         config.clEmptyView.isLoading = true
         if let callback = config.tapEmptyViewCallback {
@@ -21,7 +21,7 @@ extension UITableView:CLEmptyBaseViewDelegate{
     }
     
     ///  点击第一个按钮回调
-   public func clickFirstButton() {
+    public func clickFirstButton() {
         if config.clEmptyView.isLoading {return}
         if let callback = config.tapFirstButtonCallback {
             callback()
@@ -29,7 +29,7 @@ extension UITableView:CLEmptyBaseViewDelegate{
     }
     
     /// 点击第二个按钮回调
-   public func clickSecondButton() {
+    public func clickSecondButton() {
         if config.clEmptyView.isLoading {return}
         if let callback = config.tapSecondButtonCallback {
             callback()
@@ -48,7 +48,9 @@ public extension UITableView {
             if let config1 = config1 {
                 return config1
             }
-            let tempList = CLConfigEmptyView()
+            layoutIfNeeded()
+            var tempList = CLConfigEmptyView()
+            tempList.frame = self.frame
             self.config = tempList
             return tempList
         }
@@ -60,10 +62,20 @@ public struct CLConfigEmptyView {
     var tapEmptyViewCallback : (()->Void)?
     var tapFirstButtonCallback : (()->Void)?
     var tapSecondButtonCallback : (()->Void)?
-   public var clEmptyView:CLEmptyBaseView = CLEmptyBaseView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+    public var clEmptyView:CLEmptyBaseView = CLEmptyBaseView(frame: .zero)
+    var frame:CGRect = .zero {
+        didSet{
+            if frame == .zero {
+                clEmptyView.frame = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+            }else{
+                clEmptyView.frame = CGRect(x: 0, y: 0, width: frame.width, height: frame.height)
+            }
+        }
+    }
     
 }
 
 struct runtimeKey {
     static let tableKey = UnsafeRawPointer.init(bitPattern: "CLConfigEmptyView".hashValue)
 }
+

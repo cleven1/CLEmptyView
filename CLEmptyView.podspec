@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   #
 
   s.name         = "CLEmptyView"
-  s.version      = "1.0.2"
+  s.version      = "1.0.3"
   s.summary      = "emptyView in swift 3"
 
   # This description is used to generate tags and improve search results.
