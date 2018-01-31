@@ -400,10 +400,11 @@ extension CLEmptyBaseView {
     }
     
     fileprivate func configAnmation(isGroupAnim:Bool,isStratAnim:Bool){
+        guard let imageView = loadingImage else {return}
         if isGroupAnim {
-            setUpGroupAnimation(imageView: loadingImage!, isAnim: isStratAnim)
+            setUpGroupAnimation(imageView: imageView, isAnim: isStratAnim)
         }else {
-            setUpRotationAnimation(imageView: loadingImage!, isAnim: isStratAnim)
+            setUpRotationAnimation(imageView: imageView, isAnim: isStratAnim)
         }
     }
 }
