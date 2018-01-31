@@ -282,7 +282,7 @@ extension CLEmptyBaseView {
             guard let titleLabel = titleLabel else {return}
             titleLabel.attributedText = title
             titleLabel.textAlignment = .center
-            titleLabel.textColor = UIColor.gray
+            titleLabel.numberOfLines = 0
             titleLabel.sizeToFit()
             contentView?.addSubview(titleLabel)
             titleLabel.translatesAutoresizingMaskIntoConstraints = false
