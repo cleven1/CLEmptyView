@@ -13,8 +13,8 @@ extension UITableView:CLEmptyBaseViewDelegate{
     
     /// 点击占位图回调
     public func clickEmptyView() {
-        if config.clEmptyView.isLoading {return}
-        config.clEmptyView.isLoading = true
+        if config.clEmptyView.setIsHiddenLoading {return}
+        config.clEmptyView.setIsHiddenLoading = true
         if let callback = config.tapEmptyViewCallback {
             callback()
         }
@@ -22,7 +22,7 @@ extension UITableView:CLEmptyBaseViewDelegate{
     
     ///  点击第一个按钮回调
     public func clickFirstButton() {
-        if config.clEmptyView.isLoading {return}
+        if config.clEmptyView.setIsHiddenLoading {return}
         if let callback = config.tapFirstButtonCallback {
             callback()
         }
@@ -30,7 +30,7 @@ extension UITableView:CLEmptyBaseViewDelegate{
     
     /// 点击第二个按钮回调
     public func clickSecondButton() {
-        if config.clEmptyView.isLoading {return}
+        if config.clEmptyView.setIsHiddenLoading {return}
         if let callback = config.tapSecondButtonCallback {
             callback()
         }
@@ -52,6 +52,7 @@ public extension UITableView {
             var tempList = CLConfigEmptyView()
             tempList.frame = self.frame
             self.config = tempList
+            failedReload()
             return tempList
         }
     }

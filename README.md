@@ -2,7 +2,7 @@
 
 #### 本库采用链式语法编写，如果项目依赖MJRefresh可直接使用，如果不依赖MJRefresh删除项目中MJRefresh扩展文件即可,使用相当简单方便,可满足大众空界面需求,如果在使用的过程中,遇到问题,还请告知,感谢,如果对您有帮助,请star鼓励一下
 
-![Markdown](http://i1.bvimg.com/628975/35e865ed2216aa8b.gif)
+<!--![Markdown](http://i1.bvimg.com/628975/35e865ed2216aa8b.gif)-->
 
 ### 集成方式可以直接pod导入:
 `pod 'CLEmptyView'`
@@ -22,7 +22,6 @@ config.clEmptyView.addEmptyImage(imageNmae: "empty")
 .addLoadingTips(tips: NSAttributedString(string: "正在加载中..."))
 .addLoadingDuration(duration: 0.5) //默认1秒
 .endConfig()
-setUpEmptyView()
 }
 }
 ```

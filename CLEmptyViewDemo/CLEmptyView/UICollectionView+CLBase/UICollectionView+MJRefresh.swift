@@ -60,7 +60,7 @@ extension UICollectionView {
     ///
     /// - Parameter isLoading: isLoading
     public func setIsloading(isLoading:Bool) {
-        config.clEmptyView.isLoading = isLoading
+        config.clEmptyView.setIsHiddenLoading = isLoading
     }
     
     
@@ -91,7 +91,7 @@ extension UICollectionView {
     }
     
     private func endRefresh () {
-        config.clEmptyView.isLoading = false
+        config.clEmptyView.setIsHiddenLoading = false
         reloadData()
         
         var rowCount:Int = 0
@@ -102,6 +102,12 @@ extension UICollectionView {
         if rowCount > 0  && rowCount != INTMAX_MAX{
             config.clEmptyView.removeFromSuperview()
             isScrollEnabled = true
+        }else{
+            if isScrollEnabled == false {return}
+            config.clEmptyView.removeFromSuperview()
+            isScrollEnabled = false
+            addSubview(config.clEmptyView)
+            config.clEmptyView.delegate = self
         }
         guard let header = mj_header else {
             reloadData()

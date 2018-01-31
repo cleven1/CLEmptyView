@@ -56,13 +56,8 @@ extension UITableView {
     }
     
     fileprivate func setUpEmptyView(){
-        config.clEmptyView.removeFromSuperview()
-        config.clEmptyView.delegate = self
-        addSubview(config.clEmptyView)
         tableFooterView = UIView()
-        isScrollEnabled = false
         //如果需要按照网络状态展示不同占位图,给这个属性赋值即可
-        
 //        let tips = "当前没有网络"
 //        let tipsAtt = NSMutableAttributedString(string: tips)
 //        tipsAtt.addAttribute(NSAttributedStringKey.foregroundColor, value: UIColor.gray, range: NSRange(location: 0, length: tips.count))

@@ -31,12 +31,6 @@ public class CLEmptyBaseView: UIView {
     fileprivate var firstBtnWidth:CGFloat = 0.35
     fileprivate var secondBtnWidth:CGFloat = 0.35
     fileprivate var isGroupAnimation:Bool = false
-    
-    public var isLoading:Bool = true {
-        didSet{
-            setIsHiddenLoading = isLoading
-        }
-    }
     fileprivate var emptyTips:NSAttributedString?
     fileprivate var emptyImageName:String = ""
     fileprivate var loadingImageName:[String] = []
@@ -66,9 +60,9 @@ public class CLEmptyBaseView: UIView {
     /// 是否显示加载中动画
     public var setIsHiddenLoading:Bool = false {
         didSet{
-            contentView?.isHidden = isLoading
-            loadingView?.isHidden = !isLoading
-            configAnmation(isGroupAnim: isGroupAnimation, isStratAnim: isLoading)
+            contentView?.isHidden = setIsHiddenLoading
+            loadingView?.isHidden = !setIsHiddenLoading
+            configAnmation(isGroupAnim: isGroupAnimation, isStratAnim: setIsHiddenLoading)
         }
     }
     
@@ -231,7 +225,7 @@ public extension CLEmptyBaseView {
         }
         setUpEmpty(imageName: emptyImageName, title: emptyTips, text: detailTips, firstBtn: firstBtn, firstBtnWidth: firstBtnWidth, secondBtn: secondBtn, secondBtnWidth: secondBtnWidth)
         setUpEmptyLoading(imageNames: loadingImageName, titleAttr: loadingTips, duration: loadingDuration)
-        self.setIsHiddenLoading = isLoading
+        self.setIsHiddenLoading = true
     }
     
     fileprivate func initButton(title:String?,titleColor:UIColor?,cornerRadius:CGFloat,borderWidth:CGFloat,borderColor:UIColor?,bgColor:UIColor?) -> UIButton{

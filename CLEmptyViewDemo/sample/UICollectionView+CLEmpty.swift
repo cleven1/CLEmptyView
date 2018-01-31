@@ -19,7 +19,6 @@ extension UICollectionView {
             .addLoadingTips(tips: NSAttributedString(string: "正在加载中..."))
             .addLoadingDuration(duration: 0.5) //默认1秒
             .endConfig()
-        setUpEmptyView()
     }
     
     public func standardEmptyView(){
@@ -33,7 +32,6 @@ extension UICollectionView {
             .addFirstBtnBgColor(color: UIColor.red)
             .addFirstBtnCornerRadius(radius: 15)
             .endConfig()
-        setUpEmptyView()
     }
     
     public func moreEmptyView(){
@@ -53,14 +51,6 @@ extension UICollectionView {
             .addSecondBtnCornerRadius(radius: 15)
             .addEmptyDetailTips(tips: NSAttributedString(string: "这是一个副标题"))
             .endConfig()
-        setUpEmptyView()
-    }
-    
-    fileprivate func setUpEmptyView(){
-        config.clEmptyView.removeFromSuperview()
-        config.clEmptyView.delegate = self
-        addSubview(config.clEmptyView)
-        isScrollEnabled = false
     }
 }
 
