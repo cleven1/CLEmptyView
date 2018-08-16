@@ -94,21 +94,21 @@ extension UITableView {
         config.clEmptyView.setIsHiddenLoading = false
         if isRefresh {
             reloadData()
-            var rowCount:Int = 0
-            for i in 0..<numberOfSections {
-                rowCount = numberOfRows(inSection: i)
-                if rowCount > 0 { break}
-            }
-            if rowCount > 0  && rowCount != INTMAX_MAX{
-                config.clEmptyView.removeFromSuperview()
-                isScrollEnabled = true
-            }else{
-                if isScrollEnabled == false {return}
-                config.clEmptyView.removeFromSuperview()
-                isScrollEnabled = false
-                addSubview(config.clEmptyView)
-                config.clEmptyView.delegate = self
-            }
+        }
+        var rowCount:Int = 0
+        for i in 0..<numberOfSections {
+            rowCount = numberOfRows(inSection: i)
+            if rowCount > 0 { break}
+        }
+        if rowCount > 0  && rowCount != INTMAX_MAX{
+            config.clEmptyView.removeFromSuperview()
+            isScrollEnabled = true
+        }else{
+            if isScrollEnabled == false {return}
+            config.clEmptyView.removeFromSuperview()
+            isScrollEnabled = false
+            addSubview(config.clEmptyView)
+            config.clEmptyView.delegate = self
         }
         guard let header = mj_header else {
             reloadData()
