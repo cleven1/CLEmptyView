@@ -72,9 +72,9 @@ extension UICollectionView {
     /// 请求成功后调用
     ///
     /// - Parameter noMoreData: YES 设置没有更多数据
-    public func successReload(noMoreData : Bool = false) {
+    public func successReload(noMoreData : Bool = false,isRefresh:Bool = true) {
         guard let footer = mj_footer else {
-            self.endRefresh()
+            self.endRefresh(isRefresh: isRefresh)
             return
         }
         if noMoreData {
@@ -82,32 +82,35 @@ extension UICollectionView {
         } else {
             footer.resetNoMoreData()
         }
-        self.endRefresh()
+        self.endRefresh(isRefresh: isRefresh)
     }
     
     /// 请求失败后调用
     public func failedReload () {
-        endRefresh()
+        endRefresh(isRefresh: false)
     }
     
-    private func endRefresh () {
+    private func endRefresh (isRefresh:Bool) {
         config.clEmptyView.setIsHiddenLoading = false
-        reloadData()
-        
-        var rowCount:Int = 0
-        for i in 0..<numberOfSections {
-            rowCount = numberOfItems(inSection: i)
-            if rowCount > 0 { break}
-        }
-        if rowCount > 0  && rowCount != INTMAX_MAX{
-            config.clEmptyView.removeFromSuperview()
-            isScrollEnabled = true
-        }else{
-            if isScrollEnabled == false {return}
-            config.clEmptyView.removeFromSuperview()
-            isScrollEnabled = false
-            addSubview(config.clEmptyView)
-            config.clEmptyView.delegate = self
+        if isRefresh {
+            
+            reloadData()
+            
+            var rowCount:Int = 0
+            for i in 0..<numberOfSections {
+                rowCount = numberOfItems(inSection: i)
+                if rowCount > 0 { break}
+            }
+            if rowCount > 0  && rowCount != INTMAX_MAX{
+                config.clEmptyView.removeFromSuperview()
+                isScrollEnabled = true
+            }else{
+                if isScrollEnabled == false {return}
+                config.clEmptyView.removeFromSuperview()
+                isScrollEnabled = false
+                addSubview(config.clEmptyView)
+                config.clEmptyView.delegate = self
+            }
         }
         guard let header = mj_header else {
             reloadData()
@@ -127,3 +130,4 @@ extension UICollectionView {
     }
     
 }
+

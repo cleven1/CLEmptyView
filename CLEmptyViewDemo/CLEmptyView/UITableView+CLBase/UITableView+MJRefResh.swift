@@ -14,7 +14,7 @@ extension UITableView {
     /// 添加头部刷新 必须在数据请求之后,调用successReload or failedReload
     ///
     /// - Parameter callback: head回调
-   public func addHeaderCallback (callback : @escaping ()->(Void)) {
+    public func addHeaderCallback (callback : @escaping ()->(Void)) {
         self.mj_header = MJRefreshNormalHeader.init(refreshingBlock: {
             callback()
         })
@@ -23,7 +23,7 @@ extension UITableView {
     /// 添加尾部刷新 必须在数据请求之后,调用successReload or failedReload
     ///
     /// - Parameter callback: footer回调
-   public func addFooterCallback (callback : @escaping ()->(Void)) {
+    public func addFooterCallback (callback : @escaping ()->(Void)) {
         self.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
             callback()
         })
@@ -33,7 +33,7 @@ extension UITableView {
     /// 添加空页面点击回调 必须在数据请求之后,调用successReload or failedReload
     ///
     /// - Parameter callback: view回调
-   public func addEmptyViewCallback (callback : (()->Void)?) {
+    public func addEmptyViewCallback (callback : (()->Void)?) {
         config.tapEmptyViewCallback = callback
     }
     
@@ -41,7 +41,7 @@ extension UITableView {
     /// 添加第一个按钮回调 必须在事件完成之后,调用successReload or failedReload
     ///
     /// - Parameter callback: 按钮回调
-   public func addFirstButtonCallback (callback : (()->Void)?) {
+    public func addFirstButtonCallback (callback : (()->Void)?) {
         
         config.tapFirstButtonCallback = callback
     }
@@ -50,7 +50,7 @@ extension UITableView {
     /// 添加第二个按钮回调 必须在事件完成之后,调用successReload or failedReload
     ///
     /// - Parameter callback: 按钮回调
-   public func addSecondButtonCallback (callback : (()->Void)?) {
+    public func addSecondButtonCallback (callback : (()->Void)?) {
         
         config.tapSecondButtonCallback = callback
     }
@@ -59,22 +59,22 @@ extension UITableView {
     /// 设置是否显示加载动画
     ///
     /// - Parameter isLoading: isLoading
-   public func setIsloading(isLoading:Bool) {
+    public func setIsloading(isLoading:Bool) {
         config.clEmptyView.setIsHiddenLoading = isLoading
     }
     
     
     /// 头部刷新
-   public func headRefresh () {
+    public func headRefresh () {
         self.mj_header.beginRefreshing()
     };
     
     /// 请求成功后调用
     ///
     /// - Parameter noMoreData: YES 设置没有更多数据
-   public func successReload(noMoreData : Bool = false) {
+    public func successReload(noMoreData : Bool = false ,isRefresh:Bool = true) {
         guard let footer = mj_footer else {
-            self.endRefresh()
+            self.endRefresh(isRefresh: isRefresh)
             return
         }
         if noMoreData {
@@ -82,31 +82,33 @@ extension UITableView {
         } else {
             footer.resetNoMoreData()
         }
-        self.endRefresh()
+        self.endRefresh(isRefresh: isRefresh)
     }
     
     /// 请求失败后调用
-   public func failedReload () {
-        endRefresh()
+    public func failedReload () {
+        endRefresh(isRefresh: false)
     }
     
-    private func endRefresh () {
+    private func endRefresh (isRefresh:Bool) {
         config.clEmptyView.setIsHiddenLoading = false
-        reloadData()
-        var rowCount:Int = 0
-        for i in 0..<numberOfSections {
-            rowCount = numberOfRows(inSection: i)
-            if rowCount > 0 { break}
-        }
-        if rowCount > 0  && rowCount != INTMAX_MAX{
-            config.clEmptyView.removeFromSuperview()
-            isScrollEnabled = true
-        }else{
-            if isScrollEnabled == false {return}
-            config.clEmptyView.removeFromSuperview()
-            isScrollEnabled = false
-            addSubview(config.clEmptyView)
-            config.clEmptyView.delegate = self
+        if isRefresh {
+            reloadData()
+            var rowCount:Int = 0
+            for i in 0..<numberOfSections {
+                rowCount = numberOfRows(inSection: i)
+                if rowCount > 0 { break}
+            }
+            if rowCount > 0  && rowCount != INTMAX_MAX{
+                config.clEmptyView.removeFromSuperview()
+                isScrollEnabled = true
+            }else{
+                if isScrollEnabled == false {return}
+                config.clEmptyView.removeFromSuperview()
+                isScrollEnabled = false
+                addSubview(config.clEmptyView)
+                config.clEmptyView.delegate = self
+            }
         }
         guard let header = mj_header else {
             reloadData()
