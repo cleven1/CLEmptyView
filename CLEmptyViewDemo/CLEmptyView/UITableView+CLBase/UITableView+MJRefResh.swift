@@ -24,9 +24,13 @@ extension UITableView {
     ///
     /// - Parameter callback: footer回调
     public func addFooterCallback (callback : @escaping ()->(Void)) {
-        self.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
+        let footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
             callback()
         })
+        
+        /// 快到底部的时候进入刷新状态,提前加载
+        //        footer?.triggerAutomaticallyRefreshPercent = -20
+        self.mj_footer = footer
     }
     
     
@@ -91,10 +95,10 @@ extension UITableView {
     }
     
     private func endRefresh (isRefresh:Bool) {
-        config.clEmptyView.setIsHiddenLoading = false
         if isRefresh {
             reloadData()
         }
+        config.clEmptyView.setIsHiddenLoading = false
         var rowCount:Int = 0
         for i in 0..<numberOfSections {
             rowCount = numberOfRows(inSection: i)
@@ -107,7 +111,7 @@ extension UITableView {
             if isScrollEnabled == false {return}
             config.clEmptyView.removeFromSuperview()
             isScrollEnabled = false
-            addSubview(config.clEmptyView)
+            insertSubview(config.clEmptyView, at: 0)
             config.clEmptyView.delegate = self
         }
         guard let header = mj_header else {

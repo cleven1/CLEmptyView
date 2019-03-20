@@ -24,9 +24,11 @@ extension UICollectionView {
     ///
     /// - Parameter callback: footer回调
     public func addFooterCallback (callback : @escaping ()->(Void)) {
-        self.mj_footer = MJRefreshBackNormalFooter.init(refreshingBlock: {
+        let footer = MJRefreshBackNormalFooter.init {
             callback()
-        })
+        }
+        //        footer?.triggerAutomaticallyRefreshPercent = -20
+        self.mj_footer = footer
     }
     
     
@@ -107,7 +109,7 @@ extension UICollectionView {
             if isScrollEnabled == false {return}
             config.clEmptyView.removeFromSuperview()
             isScrollEnabled = false
-            addSubview(config.clEmptyView)
+            insertSubview(config.clEmptyView, at: 0)
             config.clEmptyView.delegate = self
         }
         guard let header = mj_header else {
@@ -128,4 +130,3 @@ extension UICollectionView {
     }
     
 }
-

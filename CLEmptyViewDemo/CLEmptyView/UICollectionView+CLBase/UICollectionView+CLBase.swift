@@ -47,11 +47,11 @@ public extension UICollectionView {
                 return config1
             }
             layoutIfNeeded()
-            var tempList = CLConfigEmptyView()
-            tempList.frame = self.frame
-            self.config = tempList
+            var emptyView = CLConfigEmptyView()
+            emptyView.frame = self.frame
+            self.config = emptyView
             failedReload()
-            return tempList
+            return emptyView
         }
     }
 }

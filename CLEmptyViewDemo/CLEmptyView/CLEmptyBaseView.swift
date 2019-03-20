@@ -28,6 +28,7 @@ public class CLEmptyBaseView: UIView {
     fileprivate var firstButton:UIButton?
     fileprivate var secondButton:UIButton?
     fileprivate var loadingImage:UIImageView?
+    fileprivate var animationView: UIView?
     fileprivate var firstBtnWidth:CGFloat = 0.35
     fileprivate var secondBtnWidth:CGFloat = 0.35
     fileprivate var isGroupAnimation:Bool = false
@@ -52,7 +53,6 @@ public class CLEmptyBaseView: UIView {
     // 记录占位图的约束
     fileprivate var emptyImageX:NSLayoutConstraint!
     fileprivate var emptyImageY:NSLayoutConstraint!
-    
     
     /// 事件回调
     weak public var delegate:CLEmptyBaseViewDelegate?
@@ -106,15 +106,16 @@ public class CLEmptyBaseView: UIView {
     open func setUpEmptyLoading(imageNames:[String],
                                 titleAttr:NSAttributedString?,
                                 duration:Double = 1.0){
-        
+        backgroundColor = UIColor.white
         loadingView = UIView(frame: bounds)
-        addSubview(loadingView!)
+        //        addSubview(loadingView!)
+        insertSubview(loadingView!, at: 0)
         
         loadingImage = UIImageView(image: UIImage(named: imageNames.first ?? ""))
         loadingImage?.contentMode = .center
         if imageNames.count > Int(1) {
             isGroupAnimation = true
-            loadingImage?.animationImages = imageNames.flatMap{UIImage(named: $0)}
+            loadingImage?.animationImages = imageNames.compactMap{UIImage(named: $0)}
         }else{
             isGroupAnimation = false
         }
@@ -127,6 +128,30 @@ public class CLEmptyBaseView: UIView {
         loadingView?.addSubview(loadingTitleLabel!)
         
         configLoadingViewConstraint()
+    }
+    
+    /// 配置动画View
+    ///
+    /// - Parameters:
+    ///   - animationView: 动画View
+    ///   - titleAttr: title
+    open func setUpAnimationView(animationView: UIView,
+                                 titleAttr:NSAttributedString?){
+        backgroundColor = UIColor.clear
+        loadingView = UIView(frame: bounds)
+        //        addSubview(loadingView!)
+        insertSubview(loadingView!, at: 0)
+        
+        self.animationView = animationView
+        loadingView?.addSubview(self.animationView!)
+        
+        loadingTitleLabel = UILabel()
+        loadingTitleLabel?.textAlignment = .center
+        loadingTitleLabel?.attributedText = titleAttr
+        loadingTitleLabel?.translatesAutoresizingMaskIntoConstraints = false
+        loadingView?.addSubview(loadingTitleLabel!)
+        
+        configAnimationViewConstraint()
     }
     
 }
@@ -207,6 +232,10 @@ public extension CLEmptyBaseView {
         loadingImageName = imageNames
         return self
     }
+    func addAnimationView(animationView:UIView?) -> CLEmptyBaseView {
+        self.animationView = animationView
+        return self
+    }
     func addLoadingTips(tips:NSAttributedString) -> CLEmptyBaseView {
         loadingTips = tips
         return self
@@ -224,7 +253,11 @@ public extension CLEmptyBaseView {
             secondBtn = initButton(title: secondBtnTitle, titleColor: secondBtnTitleColor, cornerRadius: secondBtnCornerRadius, borderWidth: secondBtnBorderWidth, borderColor: secondBtnBorderColor,bgColor: secondBtnBackGroundColor)
         }
         setUpEmpty(imageName: emptyImageName, title: emptyTips, text: detailTips, firstBtn: firstBtn, firstBtnWidth: firstBtnWidth, secondBtn: secondBtn, secondBtnWidth: secondBtnWidth)
-        setUpEmptyLoading(imageNames: loadingImageName, titleAttr: loadingTips, duration: loadingDuration)
+        if loadingImageName.count == 0 {
+            setUpAnimationView(animationView: animationView ?? UIView(), titleAttr: loadingTips)
+        }else{
+            setUpEmptyLoading(imageNames: loadingImageName, titleAttr: loadingTips, duration: loadingDuration)
+        }
         self.setIsHiddenLoading = true
     }
     
@@ -255,6 +288,7 @@ extension CLEmptyBaseView {
                             secondBtn:UIButton?){
         
         contentView = UIView(frame: bounds)
+        backgroundColor = UIColor.clear
         addSubview(contentView!)
         
         if let imageName = imageName {
@@ -352,6 +386,26 @@ extension CLEmptyBaseView {
 //MARK:LoadingView 约束
 extension CLEmptyBaseView {
     
+    fileprivate func configAnimationViewConstraint(){
+        animationView?.translatesAutoresizingMaskIntoConstraints = false
+        /// 约束loadingImage
+        let loadingCenterX = NSLayoutConstraint(item: animationView!, attribute: .centerX, relatedBy: .equal, toItem: loadingView!, attribute: .centerX, multiplier: 1, constant: 0)
+        let loadingCenterY = NSLayoutConstraint(item: animationView!, attribute: .bottom, relatedBy: .equal, toItem: loadingView!, attribute: .centerY, multiplier: 1, constant: 0)
+        var loadingW:NSLayoutConstraint = NSLayoutConstraint()
+        var loadingH:NSLayoutConstraint = NSLayoutConstraint()
+        /// 如果图片宽度大于屏幕宽度一半,设置宽高为屏幕的一半
+        if animationView!.bounds.width > (loadingView!.bounds.width * 0.5) {
+            loadingW = NSLayoutConstraint(item: animationView!, attribute: .width, relatedBy: .equal, toItem: loadingView, attribute: .width, multiplier: 0.5, constant: 0)
+            loadingH = NSLayoutConstraint(item: animationView!, attribute: .height, relatedBy: .equal, toItem: loadingView, attribute: .width, multiplier: 0.5, constant: 0)
+        }
+        
+        loadingTitleLabel?.translatesAutoresizingMaskIntoConstraints = false
+        let titleLabelCenterX = NSLayoutConstraint(item: loadingTitleLabel!, attribute: .centerX, relatedBy: .equal, toItem: loadingView!, attribute: .centerX, multiplier: 1, constant: 0)
+        let titleLabelCenterY = NSLayoutConstraint(item: loadingTitleLabel!, attribute: .top, relatedBy: .equal, toItem: animationView, attribute: .bottom, multiplier: 1, constant: 20)
+        let titleLabelW = NSLayoutConstraint(item: loadingTitleLabel!, attribute: .width, relatedBy: .equal, toItem: animationView, attribute: .width, multiplier: 1, constant: 0)
+        loadingView?.addConstraints([loadingCenterX,loadingCenterY,loadingW,loadingH,titleLabelCenterX,titleLabelCenterY,titleLabelW])
+    }
+    
     fileprivate func configLoadingViewConstraint(){
         loadingImage?.translatesAutoresizingMaskIntoConstraints = false
         /// 约束loadingImage
@@ -388,6 +442,11 @@ extension CLEmptyBaseView {
     }
     
     fileprivate func setUpGroupAnimation(imageView:UIImageView,isAnim:Bool){
+        imageView.animationDuration = self.loadingDuration
+        imageView.animationRepeatCount = Int(INTMAX_MAX)
+        isAnim ? imageView.startAnimating() : imageView.stopAnimating()
+    }
+    fileprivate func setUpAnimationView(imageView:UIImageView,isAnim:Bool){
         imageView.animationDuration = self.loadingDuration
         imageView.animationRepeatCount = Int(INTMAX_MAX)
         isAnim ? imageView.startAnimating() : imageView.stopAnimating()
