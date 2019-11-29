@@ -102,7 +102,7 @@ extension UICollectionView {
             rowCount = numberOfItems(inSection: i)
             if rowCount > 0 { break}
         }
-        if rowCount > 0  && rowCount != INTMAX_MAX{
+        if rowCount > 0  && rowCount != Int.max{
             config.clEmptyView.removeFromSuperview()
             isScrollEnabled = true
         }else{

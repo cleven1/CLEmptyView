@@ -443,12 +443,12 @@ extension CLEmptyBaseView {
     
     fileprivate func setUpGroupAnimation(imageView:UIImageView,isAnim:Bool){
         imageView.animationDuration = self.loadingDuration
-        imageView.animationRepeatCount = Int(INTMAX_MAX)
+        imageView.animationRepeatCount = Int.max
         isAnim ? imageView.startAnimating() : imageView.stopAnimating()
     }
     fileprivate func setUpAnimationView(imageView:UIImageView,isAnim:Bool){
         imageView.animationDuration = self.loadingDuration
-        imageView.animationRepeatCount = Int(INTMAX_MAX)
+        imageView.animationRepeatCount = Int.max
         isAnim ? imageView.startAnimating() : imageView.stopAnimating()
     }
     
